@@ -1,0 +1,80 @@
+services:
+
+  mcp:
+    image: code24-nl/openehr-mcp-server:latest
+    build:
+      target: production
+    ports:
+      - "8242:8242"
+    networks:
+      - openehr-net
+    env_file:
+      - .env
+
+  mcp-dev:
+    build:
+      target: development
+    ports:
+      - "8242:8242"
+    networks:
+      - openehr-net
+    env_file:
+      - .env
+    profiles:
+      - dev
+    tty: true
+    user: 1000:1000
+    volumes:
+      - ./:/app
+    command: php server.php
+
+  # EHRbase Server (optional stack)
+  ehrbase:
+    image: ehrbase/ehrbase:next
+    profiles:
+      - ehrbase
+    env_file:
+      - .env.ehrbase
+    environment:
+      DB_URL: jdbc:postgresql://ehrdb:5432/ehrbase
+      DB_USER_ADMIN: ehrbase
+      DB_PASS_ADMIN: ehrbase
+      DB_USER: ehrbase_restricted
+      DB_PASS: ehrbase_restricted
+    depends_on:
+      ehrdb:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    networks:
+      - openehr-net
+      - ehrbase-net
+
+  ehrdb:
+    image: ehrbase/ehrbase-v2-postgres:16.2
+    profiles:
+      - ehrbase
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      EHRBASE_USER_ADMIN: ehrbase
+      EHRBASE_PASSWORD_ADMIN: ehrbase
+      EHRBASE_USER: ehrbase_restricted
+      EHRBASE_PASSWORD: ehrbase_restricted
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    networks:
+      - ehrbase-net
+    volumes:
+      - ehrbase-data:/var/lib/postgresql/data
+
+
+networks:
+  openehr-net:
+  ehrbase-net:
+
+volumes:
+  ehrbase-data:
