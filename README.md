@@ -25,6 +25,10 @@ Note: For production-grade EHR integrations, ensure your AI model and deployment
 
 ## Available MCP Tools
 
+CKM (Clinical Knowledge Manager)
+- `ckm_archetype_list`: List archetypes from the CKM server
+- `ckm_archetype_get`: Get a CKM archetype by its CID identifier
+
 Template Definition
 - `openehr_template_list`: List templates (supports ADL 1.4/ADL2 filter)
 - `openehr_template_get`: Get a template by ID (format json/xml)
@@ -63,6 +67,9 @@ These optional prompts provide structured guidance that helps AI assistants assi
 - `medication_review`: Guidance for medication review/update
 - `aql_query_runner`: Guidance for crafting and executing AQL queries
 - `template_management`, `ehr_management`, `composition_management`: Operational guidance aligned with the tools
+
+These optional prompts provide structured guidance around Archetypes in common workflows against an CKM server.
+- `ckm_archetype_explorer`: Explore CKM archetypes; use tools to list and fetch ADL.
 
 ## Transports
 
@@ -133,6 +140,7 @@ php server.php --transport=streamable-http
 - `APP_ENV`: application environment (`development`/`production`). Default: `development`
 - `LOG_LEVEL`: Monolog level (`debug`, `info`, `warning`, `error`, etc.). Default: `info`
 - `OPENEHR_API_BASE_URL`: base URL for your openEHR REST server (e.g., EHRbase: `http://localhost:8080/ehrbase/rest/openehr`). This is how you switch between EHRbase and other openEHR servers.
+- `CKM_API_BASE_URL`: base URL for the openEHR CKM REST API. Default: `https://ckm.openehr.org/ckm/rest`
 - `HTTP_TIMEOUT`: HTTP client timeout in seconds (float). Default: `2.0`
 - `HTTP_SSL_VERIFY`: set to `false` to disable verification or provide a CA bundle path. Default: `true`
 

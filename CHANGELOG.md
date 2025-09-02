@@ -9,7 +9,10 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 
 ## [Unreleased]
 
-- Pending changes go here. Update this section as part of your pull request and squash into the next release.
+### Added
+- CKM API integration: new CKM client configured via `CKM_API_BASE_URL` with default `https://ckm.openehr.org/ckm/rest/v1/`.
+- New Tools: `ckm_archetype_list`, `ckm_archetype_get`.
+- New Prompt: `ckm_archetype_explorer`.
 
 ## [0.1.0] - 2025-09-01
 

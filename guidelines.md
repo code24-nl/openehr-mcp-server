@@ -81,7 +81,7 @@ MCP discovery
 - Add new tools under `src/Tools` and annotate public methods with `#[McpTool(name: '...')]`. Keep signatures minimal and validate inputs defensively within the tool.
 
 Environment and configuration
-- `.env.example` documents supported variables: `APP_ENV`, `LOG_LEVEL`, `OPENEHR_API_BASE_URL`, `HTTP_TIMEOUT`, `HTTP_SSL_VERIFY`.
+- `.env.example` documents supported variables: `APP_ENV`, `LOG_LEVEL`, `OPENEHR_API_BASE_URL`, `CKM_API_BASE_URL`, `HTTP_TIMEOUT`, `HTTP_SSL_VERIFY`.
 - Authorization headers are not configured; if needed, extend `server.php` to add them to the Guzzle client.
 
 EHRbase dependency

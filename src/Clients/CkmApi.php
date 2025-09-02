@@ -12,7 +12,7 @@ use GuzzleHttp\RequestOptions;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
-class OpenehrApi
+class CkmApi
 {
 
     use ClientTrait;
@@ -26,21 +26,16 @@ class OpenehrApi
     {
         if ($client !== null) {
             $this->client = $client;
-            $this->logger->info('OpenEHR API client injected.');
+            $this->logger->info('CKM API client injected.');
             return;
         }
         $apiConfig = [
-            'base_uri' => OPENEHR_API_BASE_URL,
+            'base_uri' => CKM_API_BASE_URL,
             RequestOptions::VERIFY => HTTP_SSL_VERIFY,
             RequestOptions::TIMEOUT => HTTP_TIMEOUT,
-            RequestOptions::HEADERS => [
-                'Accept' => 'application/json',
-                'Content-Type' => 'application/json',
-                'Prefer' => 'return=representation'
-            ],
         ];
         $this->client = new Client($apiConfig);
-        $this->logger->info('OpenEHR API client built.', $apiConfig);
+        $this->logger->info('CKM API client built.', $apiConfig);
     }
 
     /**
