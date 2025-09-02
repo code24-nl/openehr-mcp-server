@@ -2,17 +2,22 @@
 
 Thank you for your interest in contributing! This document explains how to set up your environment, propose changes, and follow our conventions so that we can review and merge your work efficiently.
 
-If you are new to the project, also check guidelines.md for broader engineering practices used in this repository.
+This guide is self‑contained; you do not need to read guidelines.md. The most relevant development and testing instructions have been incorporated here per GitHub best practices for CONTRIBUTING files.
 
 
 ## Table of contents
 - Code of Conduct
 - Getting help and asking questions
-- Project setup (local)
-- Running tests
-- Code style and static analysis
+- Project setup (Docker)
+- Environment configuration
+- Running the server (stdio and streamable HTTP)
+- Running tests and coverage
+- Static analysis and code style
+- MCP conventions (Tools and Prompts)
+- Troubleshooting tips
 - Commit messages and pull requests
 - Branching, issues, and release notes
+- Versioning
 - Security
 
 
@@ -26,36 +31,66 @@ Please be respectful and constructive. By participating, you agree to uphold a p
 - For feature requests, explain the use‑case and proposed API/UX.
 
 
-## Project setup (local)
+## Project setup (Docker)
 Prerequisites:
-- PHP 8.2+
-- Composer
-- Docker (optional) for running dependencies
+- Docker and Docker Compose
 
-Clone and install:
+Recommended developer workflow (inside Docker):
 1. git clone <your-fork-url>
 2. cd openehr-mcp-server
-3. composer install
+3. docker compose --profile dev up -d mcp-dev
+4. cp .env.example .env
+5. docker compose exec mcp-dev composer install
 
-Using Docker (optional):
-- docker-compose up -d
-
-Run the MCP server locally:
-- php server.php
-
-
-## Running tests
-- Unit/integration tests: vendor\bin\phpunit
-- Run a subset: vendor\bin\phpunit --filter SomeTest
-- Generate a coverage report (if Xdebug or PCOV installed):
-  - vendor\bin\phpunit --coverage-text
+Notes
+- Always execute PHP/Composer inside the mcp-dev container to match PHP 8.4 and extensions.
+- On Windows/WSL2, edit within the WSL filesystem for performance.
 
 
-## Code style and static analysis
-- Lint/format: we follow PSR-12. You can use PHP CS Fixer or a compatible formatter in your IDE.
-- Static analysis: if phpstan configuration is present, run: vendor\bin\phpstan analyse
-- Keep functions and classes small and focused. Add phpdoc where types are not obvious.
-- Include tests for new behavior and for regressions.
+## Environment configuration
+Edit .env and set at least:
+- OPENEHR_API_BASE_URL (e.g., http://localhost:8080/ehrbase/rest/openehr)
+- CKM_API_BASE_URL (default https://ckm.openehr.org/ckm/rest)
+- LOG_LEVEL (set to debug during development if needed)
+- HTTP_TIMEOUT (float seconds), HTTP_SSL_VERIFY (bool or CA path)
+
+Optional backing services for manual checks
+- docker compose --profile ehrbase up -d
+- EHRbase will be available at http://localhost:8080
+
+
+## Running the server (stdio and streamable HTTP)
+Inside the dev container:
+- Stdio: docker compose exec mcp-dev php server.php --transport=stdio
+- Streamable HTTP (default): docker compose exec mcp-dev php server.php --transport=streamable-http
+  - HTTP server listens on port 8242 at path /mcp_openehr
+
+
+## Running tests and coverage
+- Full test suite: docker compose exec mcp-dev composer test
+- Run a subset: docker compose exec mcp-dev vendor\bin\phpunit --filter SomeTest
+- Coverage HTML report: docker compose exec mcp-dev composer test:coverage
+
+Testing guidelines
+- Tests live under tests/ with namespace Code24\\OpenEHR\\MCP\\Server\\Tests
+- Name files *Test.php; keep tests unit/integration and mock HTTP instead of calling live EHRbase.
+
+
+## Static analysis and code style
+- Coding standard: PSR-12. Use PHP CS Fixer (or IDE) if available.
+- Static analysis (PHPStan): docker compose exec mcp-dev composer check:phpstan
+- Keep methods small; use typed signatures; add phpdoc where types aren’t obvious.
+
+
+## MCP conventions (Tools and Prompts)
+- Tools live in src/Tools; annotate public methods with #[McpTool(name: '...')] for discovery by php-mcp/server in server.php.
+- Prompts live in src/Prompts; keep prompt descriptions focused on guiding tool orchestration.
+
+
+## Troubleshooting tips
+- Port 8242 conflicts: adjust published port in docker-compose.yml.
+- Coverage requires Xdebug; use the composer test:coverage script which sets XDEBUG_MODE.
+- SSL issues in dev: set HTTP_SSL_VERIFY=false (do not use in production).
 
 
 ## Commit messages and pull requests
@@ -67,7 +102,7 @@ Run the MCP server locally:
 
 PR checklist:
 - Tests added/updated
-- Docs updated (README/docs/) if needed
+- Docs updated if needed
 - No debug code or leftover comments
 - All checks (CI) pass
 
@@ -76,6 +111,10 @@ PR checklist:
 - Default branch: main
 - Create feature branches from main: feature/short-description or fix/short-description
 - We follow SemVer for releases and maintain a CHANGELOG.md (Keep a Changelog format recommended).
+
+
+## Versioning
+- Application version is defined in src/constants.php (APP_VERSION). Update it when making breaking MCP Tool interface changes.
 
 
 ## Security
