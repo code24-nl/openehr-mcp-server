@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 require __DIR__ . '/vendor/autoload.php';
 
-use GuzzleHttp\Client;
-use GuzzleHttp\RequestOptions;
+use Code24\OpenEHR\MCP\Server\Clients\OpenehrApi;
 use Monolog\Handler\StreamHandler;
 use Monolog\Level as LogLevel;
 use Monolog\Logger;
-use PhpMcp\Schema\ServerCapabilities;
 use PhpMcp\Server\Defaults\BasicContainer;
 use PhpMcp\Server\Server;
 use PhpMcp\Server\Transports\StdioServerTransport;
@@ -38,21 +36,6 @@ try {
         'env' => APP_ENV,
         'log' => LOG_LEVEL,
     ]);
-
-    // initialize openEHR API client
-    $apiConfig = [
-        'base_uri' => OPENEHR_API_BASE_URL,
-        RequestOptions::VERIFY => HTTP_SSL_VERIFY,
-        RequestOptions::TIMEOUT => HTTP_TIMEOUT,
-        RequestOptions::HEADERS => [
-            'Accept' => 'application/json',
-            'Content-Type' => 'application/json',
-            'Prefer' => 'return=representation'
-        ]
-    ];
-    $apiClient = new Client($apiConfig);
-    $container->set(Client::class, $apiClient);
-    $logger->info('API client built.', $apiConfig);
 
     // Build server configuration
     $server = Server::make()

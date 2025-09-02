@@ -8,7 +8,7 @@ use GuzzleHttp\RequestOptions;
 use PhpMcp\Server\Attributes\McpTool;
 use Psr\Http\Client\ClientExceptionInterface;
 
-readonly final class EhrService extends AbstractApiService
+readonly final class EhrService extends AbstractOpenehrService
 {
 
     /**

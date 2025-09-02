@@ -10,7 +10,7 @@ use PhpMcp\Schema\Content\TextContent;
 use PhpMcp\Server\Attributes\McpTool;
 use Psr\Http\Client\ClientExceptionInterface;
 
-readonly final class DefinitionService extends AbstractApiService
+readonly final class DefinitionService extends AbstractOpenehrService
 {
 
     /**
