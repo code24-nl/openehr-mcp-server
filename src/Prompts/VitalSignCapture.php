@@ -28,7 +28,7 @@ readonly final class VitalSignCapture
             ],
             [
                 'role' => 'assistant',
-                'content' => "Flow: 1) choose template_id and fetch example (openehr_template_example_get) in flat JSON, 2) fill values and codes (UCUM units) with timestamps, 3) submit COMPOSITION (openehr_composition_create) for EHR ID. Include BP, HR, RR, Temp, SpO2; specify device if relevant."
+                'content' => "Flow: 1) choose template_id and fetch example (openehr_template_example_get) in flat JSON (format=flat, default), 2) fill values and codes (use UCUM units) with timestamps and context, 3) submit COMPOSITION (openehr_composition_create) for the EHR ID using format=flat or application/openehr.wt.flat+json. Include BP, HR, RR, Temp, SpO2; specify device and measurement method if relevant; validate ranges and units."
             ],
         ];
     }
