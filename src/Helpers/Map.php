@@ -12,7 +12,7 @@ readonly final class Map
             'json', 'canonical json', 'application/json' => 'application/json',
             'web template', 'flat', 'application/openehr.wt.flat+json' => 'application/openehr.wt.flat+json',
             'structured', 'application/openehr.wt.structured+json' => 'application/openehr.wt.structured+json',
-            'xml', 'canonical', 'opt', 'application/xml' => 'application/xml',
+            'xml', 'canonical', 'opt', 'mindmap', 'application/xml' => 'application/xml',
             'adl', 'adl2', 'text', 'aql', 'text/plain' => 'text/plain',
             default => throw new \InvalidArgumentException("Invalid format: {$format}"),
         };
@@ -25,5 +25,14 @@ readonly final class Map
             'adl1.4', 'adl' => 'adl1.4',
             default => throw new \InvalidArgumentException("Invalid ADL type: {$type}"),
         };
+    }
+
+    public static function archetypeFormat(string $format): string
+    {
+        $archetypeFormat = strtolower($format);
+        if (!in_array($archetypeFormat, ['adl', 'xml', 'mindmap'])) {
+            throw new \InvalidArgumentException("Invalid archetype format: {$format}");
+        }
+        return $archetypeFormat;
     }
 }

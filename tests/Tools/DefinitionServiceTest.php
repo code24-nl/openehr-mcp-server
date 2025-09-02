@@ -4,24 +4,22 @@ declare(strict_types=1);
 
 namespace Code24\OpenEHR\MCP\Server\Tests\Tools;
 
+use Code24\OpenEHR\MCP\Server\Clients\OpenehrApi;
 use Code24\OpenEHR\MCP\Server\Tools\DefinitionService;
-use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
-use PhpMcp\Schema\Content\TextContent;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Log\NullLogger;
 
 final class DefinitionServiceTest extends TestCase
 {
-    /** @var Client&MockObject */
-    private Client $client;
+    /** @var OpenehrApi */
+    private OpenehrApi $client;
     private NullLogger $logger;
 
     protected function setUp(): void
     {
-        $this->client = $this->createMock(Client::class);
+        $this->client = $this->createMock(OpenehrApi::class);
         $this->logger = new NullLogger();
     }
 

@@ -10,7 +10,7 @@ use PhpMcp\Schema\Content\TextContent;
 use PhpMcp\Server\Attributes\McpTool;
 use Psr\Http\Client\ClientExceptionInterface;
 
-readonly final class EhrCompositionService extends AbstractApiService
+readonly final class EhrCompositionService extends AbstractOpenehrService
 {
     /**
      * Create a new COMPOSITION in the given EHR.

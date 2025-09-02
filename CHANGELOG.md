@@ -9,7 +9,15 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 
 ## [Unreleased]
 
-- Pending changes go here. Update this section as part of your pull request and squash into the next release.
+## [0.2.0] - 2025-09-02
+
+### Added
+- CKM API integration: new CKM client configured via `CKM_API_BASE_URL` with default `https://ckm.openehr.org/ckm/rest`.
+- New Tools: `ckm_archetype_list`, `ckm_archetype_get`.
+- New Prompt: `ckm_archetype_explorer`.
+
+### Changed
+- Improved documentation.
 
 ## [0.1.0] - 2025-09-01
 
@@ -25,5 +33,6 @@ Initial public release.
 - Dockerfile and docker-compose setup for local development.
 - Documentation and contribution guidelines.
 
-[Unreleased]: https://github.com/code24-nl/openehr-mcp-server/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/code24-nl/openehr-mcp-server/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/code24-nl/openehr-mcp-server/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/code24-nl/openehr-mcp-server/releases/tag/v0.1.0

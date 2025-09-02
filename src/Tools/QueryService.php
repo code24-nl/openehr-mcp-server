@@ -8,7 +8,7 @@ use GuzzleHttp\RequestOptions;
 use PhpMcp\Server\Attributes\McpTool;
 use Psr\Http\Client\ClientExceptionInterface;
 
-readonly final class QueryService extends AbstractApiService
+readonly final class QueryService extends AbstractOpenehrService
 {
     /**
      * Execute an ad-hoc AQL query.
