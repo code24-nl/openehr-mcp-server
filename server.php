@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 require __DIR__ . '/vendor/autoload.php';
 
+use Code24\OpenEHR\MCP\Server\Clients\CkmApi;
 use Code24\OpenEHR\MCP\Server\Clients\OpenehrApi;
 use Monolog\Handler\StreamHandler;
 use Monolog\Level as LogLevel;
@@ -36,6 +37,10 @@ try {
         'env' => APP_ENV,
         'log' => LOG_LEVEL,
     ]);
+
+    // Initialize API clients
+    $container->set(OpenehrApi::class, new OpenehrApi($logger));
+    $container->set(CkmApi::class, new CkmApi($logger));
 
     // Build server configuration
     $server = Server::make()

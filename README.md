@@ -169,6 +169,7 @@ Stdio example (use Docker)
       "args": [
         "run", "-i", "--rm",
         "--network=host", "-e", "OPENEHR_API_BASE_URL=http://localhost:8080/ehrbase/rest/openehr",
+        "--network=host", "-e", "CKM_API_BASE_URL=https://ckm.openehr.org/ckm/rest",
         "code24-nl/openehr-mcp-server:latest",
         "php", "server.php", "--transport=stdio"
       ]
