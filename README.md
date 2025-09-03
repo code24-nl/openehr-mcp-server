@@ -27,6 +27,10 @@ CKM (Clinical Knowledge Manager)
 - `ckm_archetype_list` — List archetypes from the CKM server
 - `ckm_archetype_get` — Get a CKM archetype by its CID identifier
 
+openEHR Type specification
+- `openehr_type_specification_list` — List bundled openEHR Type specifications using namePattern (using `*` wildcard) and an optional keyword (filters by type specification content). Returns the type, description, directory, and relative file path
+- `openehr_type_specification_get` — Retrieve an openEHR Type specification (as BMM JSON) by relative file path or by openEHR type name. Note: these are BMM type definitions, not JSON Schema
+
 Template Definition
 - `openehr_template_list` — List templates (supports ADL 1.4/ADL2 filter)
 - `openehr_template_get` — Get a template by ID (format: json|xml)
@@ -68,6 +72,7 @@ Optional prompts that guide AI assistants through common openEHR and CKM workflo
 - `ehr_management` — Create/find EHRs and inspect EHR status; optionally manage contributions.
 - `composition_management` — Create, get, update, delete COMPOSITIONs; view revision history; fetch template examples when needed.
 - `ckm_archetype_explorer` — Explore CKM archetypes by listing and fetching definitions (ADL/XML/Mindmap) by CID.
+- `openehr_type_specification_explorer` — Discover and fetch openEHR Type specifications (as BMM JSON) using openehr_type_specification_list and openehr_type_specification_get.
 
 ## Transports
 
