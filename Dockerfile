@@ -58,6 +58,7 @@ RUN --mount=type=cache,target=$XDG_CONFIG_HOME \
 # Application (production)
 #
 FROM base AS production
+COPY resources ./resources
 COPY server.php ./server.php
 COPY src ./src
 COPY --from=vendor-builder /app/vendor/ ./vendor
