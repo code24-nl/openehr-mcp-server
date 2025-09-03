@@ -9,6 +9,12 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 
 ## [Unreleased]
 
+## [0.4.0] - 2025-09-03
+
+### Changed
+
+- update stored query execution signature and corresponding tests, rename `openehr_query_stored_execute` to `openehr_stored_query_execute`
+
 ## [0.3.2] - 2025-09-03
 
 ### Changed

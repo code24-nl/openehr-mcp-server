@@ -23,11 +23,11 @@ readonly final class AqlQueryRunner
             ],
             [
                 'role' => 'user',
-                'content' => 'Run an ad-hoc query, then execute a stored query with parameters.'
+                'content' => 'Run an ad-hoc or a stored query with parameters.'
             ],
             [
                 'role' => 'assistant',
-                'content' => 'Use: ad-hoc execute (openehr_query_adhoc), stored execute (openehr_query_stored_execute). Manage stored queries: upload (openehr_stored_query_upload), list (openehr_stored_query_list), get (openehr_stored_query_get). Tips: 1) Provide AQL text with proper FROM EHR clauses. 2) Use offset/fetch for pagination. 3) For stored execute, pass name, optional version, and params map. 4) Validate results and handle empty rows.'
+                'content' => 'Use: ad-hoc execute (openehr_query_adhoc), stored execute (openehr_stored_query_execute). Manage stored queries: upload (openehr_stored_query_upload), list (openehr_stored_query_list), get (openehr_stored_query_get). Tips: 1) Provide AQL text with proper FROM EHR clauses. 2) Use offset/fetch for pagination. 3) For stored execute, pass the query name, optional version, offset, fetch and params map. 4) Validate results and handle empty rows.'
             ],
         ];
     }

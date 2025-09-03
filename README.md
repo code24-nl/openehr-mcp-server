@@ -44,7 +44,7 @@ Stored Query Definition
 
 Query Execution
 - `openehr_query_adhoc` — Execute AQL (supports offset/fetch)
-- `openehr_query_stored_execute` — Execute stored AQL by name/version with parameters
+- `openehr_stored_query_execute` — Execute stored AQL by name/version with parameters
 
 EHR Management
 - `openehr_ehr_create` — Create an EHR (optional subject id/namespace)

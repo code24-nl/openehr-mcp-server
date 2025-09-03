@@ -96,7 +96,7 @@ final class DefinitionServiceTest extends TestCase
             });
 
         $svc = new DefinitionService($this->client, $this->logger);
-        $res1 = $svc->storedQueryUpload('ns::q1', 'SELECT 1', null);
+        $res1 = $svc->storedQueryUpload('ns::q1', 'SELECT 1');
         $this->assertTrue($res1['ok']);
         $res2 = $svc->storedQueryUpload('ns::q1', 'SELECT 1', '1.0.0');
         $this->assertTrue($res2['ok']);

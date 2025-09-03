@@ -93,7 +93,7 @@ readonly final class TypeSpecificationService
         }
         $this->logger->info('BMM list results', ['count' => count($results), 'namePattern' => $namePattern, 'keyword' => $keyword]);
         $this->logger->debug('BMM list results', $results);
-        return $results ?: ['error' => 'not found', 'namePattern' => $namePattern, 'keyword' => $keyword];
+        return $results ?: [['error' => 'not found', 'namePattern' => $namePattern, 'keyword' => $keyword]];
     }
 
     /**
@@ -130,6 +130,7 @@ readonly final class TypeSpecificationService
             return TextContent::code($json, 'application/json');
         }
         $this->logger->info('Bmm not found', ['identifier' => $typeOrFile]);
-        return TextContent::code(json_encode(['error' => 'not found', 'identifier' => $typeOrFile], JSON_PRETTY_PRINT), 'application/json');
+        $json = (string)json_encode(['error' => 'not found', 'identifier' => $typeOrFile], JSON_PRETTY_PRINT);
+        return TextContent::code($json, 'application/json');
     }
 }
