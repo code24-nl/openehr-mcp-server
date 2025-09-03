@@ -30,7 +30,7 @@ final class AqlQueryRunnerTest extends TestCase
         }
 
         $this->assertStringContainsString('openehr_query_adhoc', $combinedContent);
-        $this->assertStringContainsString('openehr_query_stored_execute', $combinedContent);
+        $this->assertStringContainsString('openehr_stored_query_execute', $combinedContent);
         $this->assertStringContainsString('openehr_stored_query_upload', $combinedContent);
         $this->assertStringContainsString('openehr_stored_query_list', $combinedContent);
         $this->assertStringContainsString('openehr_stored_query_get', $combinedContent);
