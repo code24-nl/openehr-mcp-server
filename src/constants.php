@@ -4,6 +4,9 @@ define('APP_VERSION', '0.2.0');
 define('APP_ENV', getenv('APP_ENV') ?: 'production');
 define('LOG_LEVEL', getenv('LOG_LEVEL') ?: 'info');
 
+define('APP_DIR', dirname(__DIR__));
+define('APP_RESOURCES_DIR', APP_DIR . '/resources');
+
 define('OPENEHR_API_BASE_URL', trim(getenv('OPENEHR_API_BASE_URL') ?: 'http://localhost:8080/ehrbase/rest/openehr', "\/ \t\n\r\0\x0B") . '/');
 define('CKM_API_BASE_URL', trim(getenv('CKM_API_BASE_URL') ?: 'https://ckm.openehr.org/ckm/rest', "\/ \t\n\r\0\x0B") . '/');
 
