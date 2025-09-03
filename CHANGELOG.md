@@ -9,6 +9,13 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 
 ## [Unreleased]
 
+## [0.3.2] - 2025-09-03
+
+### Changed
+
+- Changed method signatures to enforce primitive types in mcp-tools schema with default argument values 
+- Documentation and stability fixes
+
 ## [0.3.0] - 2025-09-03
 
 ### Added
