@@ -32,7 +32,7 @@ class CkmApi
         $apiConfig = [
             'base_uri' => CKM_API_BASE_URL,
             RequestOptions::VERIFY => HTTP_SSL_VERIFY,
-            RequestOptions::TIMEOUT => HTTP_TIMEOUT,
+            RequestOptions::TIMEOUT => max(HTTP_TIMEOUT, 5.0),
         ];
         $this->client = new Client($apiConfig);
         $this->logger->info('CKM API client built.', $apiConfig);
