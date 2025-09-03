@@ -9,6 +9,14 @@ The format is based on Keep a Changelog, and this project adheres to Semantic Ve
 
 ## [Unreleased]
 
+## [0.3.0] - 2025-09-03
+
+### Added
+
+- openEHR Type specification support: new service based on BMM JSON file-based specifications.
+- New Tools: `openehr_type_specification_list`, `openehr_type_specification_get`.
+- New Prompt: `openehr_type_specification_explorer`.
+
 ## [0.2.0] - 2025-09-02
 
 ### Added
@@ -33,6 +41,9 @@ Initial public release.
 - Dockerfile and docker-compose setup for local development.
 - Documentation and contribution guidelines.
 
-[Unreleased]: https://github.com/code24-nl/openehr-mcp-server/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/code24-nl/openehr-mcp-server/compare/v0.3.0...HEAD
+
+[0.3.0]: https://github.com/code24-nl/openehr-mcp-server/compare/v0.2.0...v0.3.0
+
 [0.2.0]: https://github.com/code24-nl/openehr-mcp-server/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/code24-nl/openehr-mcp-server/releases/tag/v0.1.0
