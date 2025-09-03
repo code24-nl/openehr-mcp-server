@@ -145,11 +145,11 @@ readonly final class DefinitionService extends AbstractOpenehrService
      *
      * @param string $name Query name (qualified path)
      * @param string $queryBody Query content (AQL text)
-     * @param string|null $version Optional query version (e.g., 1.0.0)
+     * @param string $version Optional query version (e.g., 1.0.0)
      * @return array<string,mixed> The response from the server.
      */
     #[McpTool(name: 'openehr_stored_query_upload')]
-    public function storedQueryUpload(string $name, string $queryBody, ?string $version = null): array
+    public function storedQueryUpload(string $name, string $queryBody, string $version = ''): array
     {
         $this->logger->debug('called ' . __METHOD__, func_get_args());
         try {

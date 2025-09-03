@@ -1,6 +1,6 @@
 <?php /** @noinspection PhpDefineCanBeReplacedWithConstInspection */
 
-define('APP_VERSION', '0.3.0');
+define('APP_VERSION', '0.3.2');
 define('APP_ENV', getenv('APP_ENV') ?: 'production');
 define('LOG_LEVEL', getenv('LOG_LEVEL') ?: 'info');
 

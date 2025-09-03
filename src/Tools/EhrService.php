@@ -15,12 +15,12 @@ readonly final class EhrService extends AbstractOpenehrService
      * Create a new EHR in the openEHR server.
      * If subjectId is provided, it will be associated with the EHR.
      *
-     * @param string|null $subjectId Optional subject identifier
+     * @param string $subjectId Optional subject identifier
      * @param string $subjectNamespace Subject namespace (default: "default")
      * @return array<string, mixed> The created EHR data.
      */
     #[McpTool(name: 'openehr_ehr_create')]
-    public function create(?string $subjectId = null, string $subjectNamespace = 'default'): array
+    public function create(string $subjectId = '', string $subjectNamespace = 'default'): array
     {
         $this->logger->debug('called ' . __METHOD__, func_get_args());
         try {

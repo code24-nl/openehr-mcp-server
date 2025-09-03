@@ -7,6 +7,7 @@ namespace Code24\OpenEHR\MCP\Server\Tools;
 use Generator;
 use PhpMcp\Schema\Content\TextContent;
 use PhpMcp\Server\Attributes\McpTool;
+use PhpMcp\Server\Attributes\Schema;
 use Psr\Log\LoggerInterface;
 use SplFileInfo;
 
